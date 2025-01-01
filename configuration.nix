@@ -127,6 +127,8 @@
     wget
     git
     gh
+    kubectl
+    k9s
     
     # Dev environment
     docker
@@ -137,9 +139,11 @@
     # Languages
     zig
     gcc
-    golang
+    go
     nodejs
     yarn
+    php
+    laravel
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -75,8 +75,8 @@
   programs.home-manager.enable = true;
 
   imports = [
-	./home-manager/zsh.nix
-	./home-manager/tmux.nix
-  	./home-manager/neovim.nix
+	  ./manager/zsh.nix
+	  ./manager/tmux.nix
+  	./manager/neovim.nix
   ];
 }

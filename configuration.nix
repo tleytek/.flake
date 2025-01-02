@@ -80,11 +80,14 @@
   users.users.mateus = {
     isNormalUser = true;
     description = "Mateus";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
   };
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
@@ -102,49 +105,79 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
 
+  # P10k theme
+  programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+
+  # programs.zsh.plugins = [
+  #   {
+  #     name = "powerlevel10k";
+  #     src = pkgs.zsh-powerlevel10k;
+  #     file = "share/zsh-powerlevel0k/powerlevel10k.zsh-theme";
+  #   }
+  #   {
+  #     name = "powerlevel10k-config";
+  #     src = lib.cleanSource
+  #   }
+  # ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # Ricing
-    dwm
-    dmenu
-
-    # Apps
-    chromium
-    discord
-    slack
-    spotify
-    vlc
-
-    # Tools
-    noisetorch
-
-    # Dev Tools
-    vim
-    wget
-    git
-    gh
-    kubectl
-    k9s
+  environment.systemPackages = 
+    (with pkgs; [
+      # Ricing
+      dwm
+      dmenu
     
-    # Dev environment
-    docker
-    ghostty-pkg
-    neovim 
-    zsh
+      # Apps
+      chromium
+      discord
+      slack
+      spotify
+      vlc
 
-    # Languages
-    zig
-    gcc
-    go
-    nodejs
-    yarn
-    php
-    laravel
-  ];
+      # Tools
+      noisetorch
+
+      # Dev Tools
+      vim
+      wget
+      git
+      gh
+      docker-compose
+      kubectl
+      k9s
+
+      # Dev environment
+      #pkgs-unstable.ghostty
+      #ghostty-pkg
+      neovim 
+      zsh
+      oh-my-zsh
+      zsh-powerlevel10k
+
+      # Languages
+      zig
+      gcc
+      go
+      nodejs
+      yarn
+      php
+      laravel
+    ])
+
+    ++
+
+    (with pkgs-unstable; [
+      ghostty
+    ]);
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -8,19 +8,12 @@
 		syntaxHighlighting.enable = true;
 		shellAliases = {
 			config = "git --git-dir=$HOME/.config/ --work-tree=$HOME";
+      # For content-management-system (Edwin) #
+      npmrc2="$(cat $HOME/.npmrc | grep '//npm.pkg.github.com:')";
+      DOCKER_BUILDKIT=1;
+      COMPOSE_DOCKER_CLI_BUILD=1;
+      #########################################
 		};
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    {
-        # name = "powerlevel10k-config";
-        src = lib.cleanSource ../..;
-        file = ".p10k.zsh";
-      }
-    ];
 		oh-my-zsh = {
 			enable = true;
       theme = "robbyrussell";

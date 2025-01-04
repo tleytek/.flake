@@ -34,16 +34,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the DWM windowing system.
-  #services.xserver.windowManager.dwm.enable = true;
-  #services.xserver.desktopManager.xterm.enable = false;
-  #services.xserver.desktopManager.xfce = {
-  #  enable = true;
-  #  noDesktop = true;
-  #  enableXfwm = false;
-  #};
-
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -105,21 +95,6 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
 
-  # P10k theme
-  programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-
-  # programs.zsh.plugins = [
-  #   {
-  #     name = "powerlevel10k";
-  #     src = pkgs.zsh-powerlevel10k;
-  #     file = "share/zsh-powerlevel0k/powerlevel10k.zsh-theme";
-  #   }
-  #   {
-  #     name = "powerlevel10k-config";
-  #     src = lib.cleanSource
-  #   }
-  # ];
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -132,6 +107,7 @@
       dmenu
     
       # Apps
+      google-chrome
       chromium
       discord
       slack
@@ -149,6 +125,7 @@
       docker-compose
       kubectl
       k9s
+      pass
 
       # Dev environment
       #pkgs-unstable.ghostty
@@ -181,11 +158,11 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 

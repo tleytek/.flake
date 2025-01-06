@@ -71,6 +71,7 @@
     isNormalUser = true;
     description = "Mateus";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -92,8 +93,8 @@
 
   # Install ZSH
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+  # users.defaultUserShell = pkgs.zsh;
+  # environment.shells = with pkgs; [ zsh ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

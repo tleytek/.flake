@@ -3,6 +3,7 @@
   programs = {
     zsh = {
       enable = true;
+      dotDir = ".config/zsh";
       autosuggestion.enable = false;
       syntaxHighlighting.enable = true;
       shellAliases = {

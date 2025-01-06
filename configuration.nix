@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ghostty-pkg, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -98,6 +98,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  services.mongodb = {
+    enable = true;
+    package = pkgs.mongodb-ce;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = 
@@ -113,6 +118,7 @@
       slack
       spotify
       vlc
+      mongodb-compass
 
       # Tools
       noisetorch
@@ -123,23 +129,22 @@
       git
       gh
       docker-compose
+      awscli2
       kubectl
       k9s
       pass
+      air
 
       # Dev environment
-      #pkgs-unstable.ghostty
-      #ghostty-pkg
       neovim 
       zsh
       oh-my-zsh
-      zsh-powerlevel10k
 
       # Languages
       zig
       gcc
       go
-      nodejs
+      nodejs_20
       yarn
       php
       laravel

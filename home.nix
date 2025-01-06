@@ -68,8 +68,7 @@
   #  /etc/profiles/per-user/mateus/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    npmrc2="//npm.pkg.github.com/:_authToken=$(pass show gh/pat/edwin)";
-    npmrc1="echo '$(zsh -c pass show gh/pat/edwin)'";
+    npmrc2="//npm.pkg.github.com/:_authToken=$(zsh -c 'pass show gh/pat/edwin')";
     DOCKER_BUILDKIT="1";
     COMPOSE_DOCKER_CLI_BUILD="1";
     EDITOR = "nvim";

@@ -94,7 +94,13 @@
   # Install ZSH
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;
-  # environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [ zsh ];
+  environment.variables = {
+    npmrc2="//npm.pkg.github.com/:_authToken=$(zsh -c 'pass show gh/pat/edwin')";
+    DOCKER_BUILDKIT="1";
+    COMPOSE_DOCKER_CLI_BUILD="1";
+    EDITOR = "nvim";
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
